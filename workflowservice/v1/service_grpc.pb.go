@@ -94,6 +94,7 @@ const (
 	WorkflowService_GetWorkerBuildIdCompatibility_FullMethodName      = "/temporal.api.workflowservice.v1.WorkflowService/GetWorkerBuildIdCompatibility"
 	WorkflowService_GetWorkerTaskReachability_FullMethodName          = "/temporal.api.workflowservice.v1.WorkflowService/GetWorkerTaskReachability"
 	WorkflowService_UpdateWorkflowExecution_FullMethodName            = "/temporal.api.workflowservice.v1.WorkflowService/UpdateWorkflowExecution"
+	WorkflowService_UpdateWithStartWorkflowExecution_FullMethodName   = "/temporal.api.workflowservice.v1.WorkflowService/UpdateWithStartWorkflowExecution"
 	WorkflowService_PollWorkflowExecutionUpdate_FullMethodName        = "/temporal.api.workflowservice.v1.WorkflowService/PollWorkflowExecutionUpdate"
 	WorkflowService_StartBatchOperation_FullMethodName                = "/temporal.api.workflowservice.v1.WorkflowService/StartBatchOperation"
 	WorkflowService_StopBatchOperation_FullMethodName                 = "/temporal.api.workflowservice.v1.WorkflowService/StopBatchOperation"
@@ -407,6 +408,10 @@ type WorkflowServiceClient interface {
 	GetWorkerTaskReachability(ctx context.Context, in *GetWorkerTaskReachabilityRequest, opts ...grpc.CallOption) (*GetWorkerTaskReachabilityResponse, error)
 	// Invokes the specified update function on user workflow code.
 	UpdateWorkflowExecution(ctx context.Context, in *UpdateWorkflowExecutionRequest, opts ...grpc.CallOption) (*UpdateWorkflowExecutionResponse, error)
+	// (-- api-linter: core::0136::prepositions=disabled
+	//
+	//	aip.dev/not-precedent: "With" is used to indicate combined operation. --)
+	UpdateWithStartWorkflowExecution(ctx context.Context, in *UpdateWithStartWorkflowExecutionRequest, opts ...grpc.CallOption) (*UpdateWithStartWorkflowExecutionResponse, error)
 	// Polls a workflow execution for the outcome of a workflow execution update
 	// previously issued through the UpdateWorkflowExecution RPC. The effective
 	// timeout on this call will be shorter of the the caller-supplied gRPC
@@ -902,6 +907,15 @@ func (c *workflowServiceClient) UpdateWorkflowExecution(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *workflowServiceClient) UpdateWithStartWorkflowExecution(ctx context.Context, in *UpdateWithStartWorkflowExecutionRequest, opts ...grpc.CallOption) (*UpdateWithStartWorkflowExecutionResponse, error) {
+	out := new(UpdateWithStartWorkflowExecutionResponse)
+	err := c.cc.Invoke(ctx, WorkflowService_UpdateWithStartWorkflowExecution_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workflowServiceClient) PollWorkflowExecutionUpdate(ctx context.Context, in *PollWorkflowExecutionUpdateRequest, opts ...grpc.CallOption) (*PollWorkflowExecutionUpdateResponse, error) {
 	out := new(PollWorkflowExecutionUpdateResponse)
 	err := c.cc.Invoke(ctx, WorkflowService_PollWorkflowExecutionUpdate_FullMethodName, in, out, opts...)
@@ -1253,6 +1267,10 @@ type WorkflowServiceServer interface {
 	GetWorkerTaskReachability(context.Context, *GetWorkerTaskReachabilityRequest) (*GetWorkerTaskReachabilityResponse, error)
 	// Invokes the specified update function on user workflow code.
 	UpdateWorkflowExecution(context.Context, *UpdateWorkflowExecutionRequest) (*UpdateWorkflowExecutionResponse, error)
+	// (-- api-linter: core::0136::prepositions=disabled
+	//
+	//	aip.dev/not-precedent: "With" is used to indicate combined operation. --)
+	UpdateWithStartWorkflowExecution(context.Context, *UpdateWithStartWorkflowExecutionRequest) (*UpdateWithStartWorkflowExecutionResponse, error)
 	// Polls a workflow execution for the outcome of a workflow execution update
 	// previously issued through the UpdateWorkflowExecution RPC. The effective
 	// timeout on this call will be shorter of the the caller-supplied gRPC
@@ -1432,6 +1450,9 @@ func (UnimplementedWorkflowServiceServer) GetWorkerTaskReachability(context.Cont
 }
 func (UnimplementedWorkflowServiceServer) UpdateWorkflowExecution(context.Context, *UpdateWorkflowExecutionRequest) (*UpdateWorkflowExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateWorkflowExecution not implemented")
+}
+func (UnimplementedWorkflowServiceServer) UpdateWithStartWorkflowExecution(context.Context, *UpdateWithStartWorkflowExecutionRequest) (*UpdateWithStartWorkflowExecutionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateWithStartWorkflowExecution not implemented")
 }
 func (UnimplementedWorkflowServiceServer) PollWorkflowExecutionUpdate(context.Context, *PollWorkflowExecutionUpdateRequest) (*PollWorkflowExecutionUpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PollWorkflowExecutionUpdate not implemented")
@@ -2397,6 +2418,24 @@ func _WorkflowService_UpdateWorkflowExecution_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorkflowService_UpdateWithStartWorkflowExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateWithStartWorkflowExecutionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkflowServiceServer).UpdateWithStartWorkflowExecution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkflowService_UpdateWithStartWorkflowExecution_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkflowServiceServer).UpdateWithStartWorkflowExecution(ctx, req.(*UpdateWithStartWorkflowExecutionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _WorkflowService_PollWorkflowExecutionUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PollWorkflowExecutionUpdateRequest)
 	if err := dec(in); err != nil {
@@ -2701,6 +2740,10 @@ var WorkflowService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateWorkflowExecution",
 			Handler:    _WorkflowService_UpdateWorkflowExecution_Handler,
+		},
+		{
+			MethodName: "UpdateWithStartWorkflowExecution",
+			Handler:    _WorkflowService_UpdateWithStartWorkflowExecution_Handler,
 		},
 		{
 			MethodName: "PollWorkflowExecutionUpdate",

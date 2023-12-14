@@ -271,6 +271,10 @@ func (s *workflowServiceProxyServer) UpdateSchedule(ctx context.Context, in0 *wo
 	return s.client.UpdateSchedule(ctx, in0)
 }
 
+func (s *workflowServiceProxyServer) UpdateWithStartWorkflowExecution(ctx context.Context, in0 *workflowservice.UpdateWithStartWorkflowExecutionRequest) (*workflowservice.UpdateWithStartWorkflowExecutionResponse, error) {
+	return s.client.UpdateWithStartWorkflowExecution(ctx, in0)
+}
+
 func (s *workflowServiceProxyServer) UpdateWorkerBuildIdCompatibility(ctx context.Context, in0 *workflowservice.UpdateWorkerBuildIdCompatibilityRequest) (*workflowservice.UpdateWorkerBuildIdCompatibilityResponse, error) {
 	return s.client.UpdateWorkerBuildIdCompatibility(ctx, in0)
 }
