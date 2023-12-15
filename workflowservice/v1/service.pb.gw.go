@@ -2970,24 +2970,24 @@ func request_WorkflowService_UpdateWithStartWorkflowExecution_0(ctx context.Cont
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace", err)
 	}
 
-	val, ok = pathParams["update.workflow_execution.workflow_id"]
+	val, ok = pathParams["start_request.workflow_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.workflow_execution.workflow_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "start_request.workflow_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "update.workflow_execution.workflow_id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "start_request.workflow_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.workflow_execution.workflow_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "start_request.workflow_id", err)
 	}
 
-	val, ok = pathParams["update.request.input.name"]
+	val, ok = pathParams["update.input.name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.request.input.name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.input.name")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "update.request.input.name", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "update.input.name", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.request.input.name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.input.name", err)
 	}
 
 	msg, err := client.UpdateWithStartWorkflowExecution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -3024,24 +3024,24 @@ func local_request_WorkflowService_UpdateWithStartWorkflowExecution_0(ctx contex
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "namespace", err)
 	}
 
-	val, ok = pathParams["update.workflow_execution.workflow_id"]
+	val, ok = pathParams["start_request.workflow_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.workflow_execution.workflow_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "start_request.workflow_id")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "update.workflow_execution.workflow_id", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "start_request.workflow_id", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.workflow_execution.workflow_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "start_request.workflow_id", err)
 	}
 
-	val, ok = pathParams["update.request.input.name"]
+	val, ok = pathParams["update.input.name"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.request.input.name")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "update.input.name")
 	}
 
-	err = runtime.PopulateFieldFromPath(&protoReq, "update.request.input.name", val)
+	err = runtime.PopulateFieldFromPath(&protoReq, "update.input.name", val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.request.input.name", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "update.input.name", err)
 	}
 
 	msg, err := server.UpdateWithStartWorkflowExecution(ctx, &protoReq)
@@ -4331,7 +4331,7 @@ func RegisterWorkflowServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/temporal.api.workflowservice.v1.WorkflowService/UpdateWithStartWorkflowExecution", runtime.WithHTTPPathPattern("/api/v1/namespaces/{namespace}/workflows/{update.workflow_execution.workflow_id}/update/{update.request.input.name}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/temporal.api.workflowservice.v1.WorkflowService/UpdateWithStartWorkflowExecution", runtime.WithHTTPPathPattern("/api/v1/namespaces/{namespace}/workflows/{start_request.workflow_id}/update/{update.input.name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5331,7 +5331,7 @@ func RegisterWorkflowServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/temporal.api.workflowservice.v1.WorkflowService/UpdateWithStartWorkflowExecution", runtime.WithHTTPPathPattern("/api/v1/namespaces/{namespace}/workflows/{update.workflow_execution.workflow_id}/update/{update.request.input.name}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/temporal.api.workflowservice.v1.WorkflowService/UpdateWithStartWorkflowExecution", runtime.WithHTTPPathPattern("/api/v1/namespaces/{namespace}/workflows/{start_request.workflow_id}/update/{update.input.name}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -5515,7 +5515,7 @@ var (
 
 	pattern_WorkflowService_UpdateWorkflowExecution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"api", "v1", "namespaces", "namespace", "workflows", "workflow_execution.workflow_id", "update", "request.input.name"}, ""))
 
-	pattern_WorkflowService_UpdateWithStartWorkflowExecution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"api", "v1", "namespaces", "namespace", "workflows", "update.workflow_execution.workflow_id", "update", "update.request.input.name"}, ""))
+	pattern_WorkflowService_UpdateWithStartWorkflowExecution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6, 1, 0, 4, 1, 5, 7}, []string{"api", "v1", "namespaces", "namespace", "workflows", "start_request.workflow_id", "update", "update.input.name"}, ""))
 
 	pattern_WorkflowService_StartBatchOperation_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "v1", "namespaces", "namespace", "batch-operations", "job_id"}, ""))
 
