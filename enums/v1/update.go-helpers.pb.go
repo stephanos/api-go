@@ -46,3 +46,22 @@ func UpdateWorkflowExecutionLifecycleStageFromString(s string) (UpdateWorkflowEx
 	}
 	return UpdateWorkflowExecutionLifecycleStage(0), fmt.Errorf("%s is not a valid UpdateWorkflowExecutionLifecycleStage", s)
 }
+
+var (
+	StartWorkflowPolicy_shorthandValue = map[string]int32{
+		"Unspecified":  0,
+		"Always":       1,
+		"IfNotRunning": 2,
+	}
+)
+
+// StartWorkflowPolicyFromString parses a StartWorkflowPolicy value from  either the protojson
+// canonical SCREAMING_CASE enum or the traditional temporal PascalCase enum to StartWorkflowPolicy
+func StartWorkflowPolicyFromString(s string) (StartWorkflowPolicy, error) {
+	if v, ok := StartWorkflowPolicy_value[s]; ok {
+		return StartWorkflowPolicy(v), nil
+	} else if v, ok := StartWorkflowPolicy_shorthandValue[s]; ok {
+		return StartWorkflowPolicy(v), nil
+	}
+	return StartWorkflowPolicy(0), fmt.Errorf("%s is not a valid StartWorkflowPolicy", s)
+}
