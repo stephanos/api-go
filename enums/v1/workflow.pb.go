@@ -60,8 +60,8 @@ const (
 	// Do not permit re-use of the workflow id for this workflow. Future start workflow requests
 	// could potentially change the policy, allowing re-use of the workflow id.
 	WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE WorkflowIdReusePolicy = 3
-	// DEPRECATED; use `WorkflowIdCollisionPolicy` instead. It is *not* allowed to use this option
-	// together with `WorkflowIdCollisionPolicy`.
+	// DEPRECATED; use WorkflowIdCollisionPolicy's TERMINATE_EXISTING instead.
+	// It is *not* allowed to use this option together with `WorkflowIdCollisionPolicy`.
 	//
 	// If a workflow is running using the same workflow ID, terminate it and start a new one.
 	// If no running workflow, then the behavior is the same as ALLOW_DUPLICATE.
